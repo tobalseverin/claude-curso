@@ -7,9 +7,10 @@
   <title>Cursos</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="claude/assets/vendor/fonts/fonts.css">
+  <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="portada.css">
   <script>
-    // Same preference key as the Claude course, applied before paint.
+    // Theme preference shared by every course, applied before paint.
     try {
       var saved = localStorage.getItem('claude-howto-theme');
       var dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;

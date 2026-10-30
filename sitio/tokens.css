@@ -1,0 +1,37 @@
+/* Shared design tokens for the catalog and every course.
+   Load this file before a course's own styles. Dark mode works with either
+   html.dark (catalog, Claude) or html[data-theme=dark] (static courses). */
+:root {
+  --orange: #fd9036;
+  --orange-deep: #b35406;
+
+  --bg: #fbfaf7;
+  --panel: #fefdfb;
+  --ink: #171915;
+  --muted: #6b6d65;
+  --line: #e5e3dc;
+  --accent: var(--orange-deep);
+  --soft: #f5eadd;
+  --code: #111510;
+
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --radius: 12px;
+  --shadow: 0 20px 55px #35200e0c;
+  color-scheme: light;
+}
+
+html.dark,
+html[data-theme="dark"] {
+  --bg: #000;
+  --panel: #0f100e;
+  --ink: #eeeee6;
+  --muted: #aaa99f;
+  --line: #2a2c27;
+  --accent: var(--orange);
+  --soft: #2b2015;
+  --code: #0d100c;
+  color-scheme: dark;
+}

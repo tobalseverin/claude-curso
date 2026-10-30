@@ -5,7 +5,8 @@
 """Apply the Curso – Claude brand to both built sites.
 Usage: uv run curso/brand.py <spanish-site> <english-site>
 Removes the upstream logo images, writes the "Curso – Claude" wordmark,
-swaps the favicon and loads curso/brand.css after the upstream styles.
+swaps the favicon, loads sitio/tokens.css before the upstream styles and
+curso/brand.css after them.
 """
 import shutil,sys
 from pathlib import Path
@@ -26,12 +27,16 @@ ROOTS=[Path(a) for a in sys.argv[1:]]
 for root in ROOTS:
  shutil.copy(HERE/'brand.css',root/'assets/curso-brand.css')
  shutil.copy(HERE/'favicon.svg',root/'assets/curso-favicon.svg')
+ shutil.copy(HERE.parent/'sitio/tokens.css',root/'assets/curso-tokens.css')
  for path in root.rglob('*.html'):
   prefix='../'*(len(path.relative_to(root).parts)-1)
   soup=BeautifulSoup(path.read_text(),'html.parser')
   for icon in soup.select('link[rel~="icon"]'):icon['href']=prefix+'assets/curso-favicon.svg'
   if not soup.find('link',href=prefix+'assets/curso-brand.css'):
    soup.head.append(soup.new_tag('link',rel='stylesheet',href=prefix+'assets/curso-brand.css'))
+   # Before the upstream sheets, so the landing page keeps its own token values.
+   soup.head.find('link',rel='stylesheet').insert_before(soup.new_tag('link',rel='stylesheet',href=prefix+'assets/curso-tokens.css'))
+  if not soup.select_one('.nav-brand'):soup.body['class']=soup.body.get('class',[])+['curso-page']
   # Header and footer brands: logos out, wordmark in.
   for brand in soup.select('.nav-brand, .footer-brand, header a[href$="index.html"]'):
    if not brand.find('img',src=lambda s:s and LOGO in s):continue
