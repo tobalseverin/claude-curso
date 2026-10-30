@@ -97,10 +97,7 @@ h1 em { color: var(--accent); }
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--panel);
-  transition: border-color 0.2s;
 }
-
-.course:hover, .course:focus-within { border-color: var(--accent); }
 
 .course h2 {
   margin: 0;

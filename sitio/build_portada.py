@@ -40,6 +40,8 @@ env = Environment(
 )
 shutil.copy(HERE / "portada/portada.css", SITE / "portada.css")
 shutil.copy(HERE / "tokens.css", SITE / "tokens.css")
+shutil.copy(HERE / "motion.css", SITE / "motion.css")
+shutil.copy(HERE / "motion.js", SITE / "motion.js")
 shutil.copy(HERE.parent / "curso/favicon.svg", SITE / "favicon.svg")
 
 # The Claude course used to live at the root; keep its old URLs working.

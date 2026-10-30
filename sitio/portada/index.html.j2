@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="claude/assets/vendor/fonts/fonts.css">
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="portada.css">
+  <link rel="stylesheet" href="motion.css">
   <script>
     // Theme preference shared by every course, applied before paint.
     try {
@@ -18,7 +19,7 @@
     } catch (e) {}
   </script>
 </head>
-<body>
+<body class="curso-texture" data-reveal=".intro > *, .course" data-lift=".course">
   <header class="top">
     <span class="brand">Cursos</span>
     <button class="theme" id="theme" type="button" aria-label="Cambiar tema">
@@ -45,6 +46,7 @@
     </ul>
   </main>
   <footer class="bottom">Cursos de Cris Severin</footer>
+  <script src="motion.js" defer></script>
   <script>
     document.getElementById('theme').addEventListener('click', function () {
       var dark = document.documentElement.classList.toggle('dark');
