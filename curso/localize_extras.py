@@ -67,6 +67,6 @@ for p in DIST.rglob('*.html'):
     if s!=str(node):node.replace_with(s)
  p.write_text(str(soup))
 p=DIST/'assets/landing.js';s=p.read_text()
-for a,b in {'Copied to clipboard':'Copiado al portapapeles','Unable to copy to clipboard':'No se pudo copiar al portapapeles','"Copied"':'"Copiado"','"Copy failed"':'"No se pudo copiar"'}.items():s=s.replace(a,b)
+for a,b in {'Copied to clipboard':'Copiado al portapapeles','Unable to copy to clipboard':'No se pudo copiar al portapapeles','"Copied"':'"Copiado"','"Copy failed"':'"No se pudo copiar"','? "Start" : "Continue"':'? "Empezar" : "Continuar"'}.items():s=s.replace(a,b)
 p.write_text(s)
 print('Localized diagram labels and interactive messages')

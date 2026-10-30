@@ -1,0 +1,77 @@
+/* Curso – Claude brand layer, loaded after the upstream stylesheets.
+   Orange replaces the upstream emerald with the same relative luminance:
+   #fd9036 matches #22c55e (decorative, dark text) and #b35406 matches
+   #15803d (text on the Ivory background, 4.8:1, WCAG AA). */
+:root {
+  --curso-orange: #fd9036;
+  --curso-orange-text: #b35406;
+
+  --d-green: var(--curso-orange);
+  --green: var(--curso-orange-text);
+  --green-vivid: var(--curso-orange);
+  --chip-green: var(--curso-orange);
+  --green-soft: rgba(253, 144, 54, 0.7);
+  --green-line: rgba(253, 144, 54, 0.35);
+  --green-glow: rgba(253, 144, 54, 0.22);
+  --green-tint-03: rgba(253, 144, 54, 0.03);
+  --green-tint-045: rgba(253, 144, 54, 0.045);
+  --green-tint-05: rgba(253, 144, 54, 0.05);
+  --green-tint-06: rgba(253, 144, 54, 0.06);
+  --green-tint-18: rgba(253, 144, 54, 0.18);
+  --green-tint-28: rgba(253, 144, 54, 0.28);
+  --green-tint-45: rgba(253, 144, 54, 0.45);
+  --green-tint-55: rgba(253, 144, 54, 0.55);
+  --green-none: rgba(253, 144, 54, 0);
+
+  --d-em-glow: 0 0 32px rgba(253, 144, 54, 0.35);
+  --d-shadow-btn: 0 0 28px var(--green-glow), inset 0 0 18px rgba(253, 144, 54, 0.06);
+  --d-shadow-card: 0 14px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(253, 144, 54, 0.05);
+  --d-shadow-done: 0 0 26px rgba(253, 144, 54, 0.06);
+  --d-shadow-term: 0 0 0 1px rgba(0, 0, 0, 0.6), 0 24px 70px rgba(0, 0, 0, 0.65),
+    0 0 60px rgba(253, 144, 54, 0.07);
+  --em-glow: 0 0 28px rgba(253, 144, 54, 0.16);
+  --shadow-btn: 0 0 24px rgba(253, 144, 54, 0.16), inset 0 0 18px rgba(253, 144, 54, 0.05);
+  --shadow-card: 0 14px 40px rgba(16, 20, 17, 0.1), 0 0 30px rgba(253, 144, 54, 0.05);
+  --shadow-done: 0 10px 32px rgba(16, 20, 17, 0.08), 0 0 26px rgba(253, 144, 54, 0.07);
+  --shadow-term: 0 0 0 1px rgba(0, 0, 0, 0.16), 0 24px 60px rgba(16, 20, 17, 0.18),
+    0 0 60px rgba(253, 144, 54, 0.09);
+}
+
+/* The dark themes re-point --green at --d-green, so only the light text
+   colour needs restating for the light defaults above. */
+html.dark {
+  --green: var(--curso-orange);
+}
+
+@media (prefers-color-scheme: dark) {
+  html.no-js {
+    --green: var(--curso-orange);
+  }
+}
+
+/* Text wordmark that replaces the upstream logo images. */
+.curso-wordmark {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.curso-wordmark .curso-accent {
+  color: var(--curso-orange-text);
+}
+
+html.dark .curso-wordmark .curso-accent {
+  color: var(--curso-orange);
+}
+
+.nav-brand .curso-wordmark {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+}
+
+.footer-brand .curso-wordmark {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  margin-bottom: 0.9rem;
+}

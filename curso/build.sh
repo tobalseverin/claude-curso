@@ -10,6 +10,7 @@ uv run curso/translate_site.py build/en build/es
 uv run curso/localize_extras.py build/es
 uv run curso/finalize.py build/es
 uv run curso/lang_switch.py build/es build/en
+uv run curso/brand.py build/es build/en
 uv run curso/validate.py build/es build/en
 
 mkdir -p build/site

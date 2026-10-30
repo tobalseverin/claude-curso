@@ -18,6 +18,7 @@ The original Markdown is the source of truth. The build renders it to English HT
 | `build_en.py` | Runs the upstream build so `INDEX.md` does not overwrite the landing page on macOS |
 | `translate_site.py`, `localize_extras.py`, `finalize.py` | Translation of pages, diagram labels and the landing page |
 | `lang_switch.py` | Adds the ES/EN switch and `hreflang` links |
+| `brand.py`, `brand.css`, `favicon.svg` | "Curso – Claude" brand: removes the upstream logos and replaces the emerald accent with orange |
 | `validate.py` | Checks links, anchors, assets and that code examples are unchanged |
 
 ## Build
