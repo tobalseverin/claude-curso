@@ -1,30 +1,9 @@
-/* Catalog tokens, matching the orange brand of the courses. */
+/* Catalog layout. Colors and type come from sitio/tokens.css. */
 :root {
-  --bg: #fbfaf7;
-  --panel: rgba(96, 78, 46, 0.045);
-  --line: rgba(0, 0, 0, 0.11);
-  --line-hover: rgba(179, 84, 6, 0.55);
-  --text: #101210;
-  --text-dim: rgba(0, 0, 0, 0.68);
-  --accent: #b35406;
-  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
-  --font-body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --space-s: 0.75rem;
   --space-m: 1.5rem;
   --space-l: 3rem;
-  --radius: 14px;
   --width: 68rem;
-}
-
-html.dark {
-  --bg: #000;
-  --panel: rgba(255, 255, 255, 0.03);
-  --line: rgba(255, 255, 255, 0.09);
-  --line-hover: rgba(253, 144, 54, 0.6);
-  --text: #fff;
-  --text-dim: rgba(255, 255, 255, 0.7);
-  --accent: #fd9036;
 }
 
 * { box-sizing: border-box; }
@@ -35,7 +14,7 @@ body {
   display: flex;
   flex-direction: column;
   background: var(--bg);
-  color: var(--text);
+  color: var(--ink);
   font-family: var(--font-body);
   line-height: 1.6;
 }
@@ -69,7 +48,7 @@ body {
   border: 1px solid var(--line);
   border-radius: 10px;
   background: none;
-  color: var(--text);
+  color: var(--ink);
   cursor: pointer;
 }
 
@@ -93,7 +72,7 @@ h1 em { color: var(--accent); }
 .intro p {
   margin: 0;
   max-width: 34rem;
-  color: var(--text-dim);
+  color: var(--muted);
   font-size: 1.1rem;
 }
 
@@ -121,7 +100,7 @@ h1 em { color: var(--accent); }
   transition: border-color 0.2s;
 }
 
-.course:hover, .course:focus-within { border-color: var(--line-hover); }
+.course:hover, .course:focus-within { border-color: var(--accent); }
 
 .course h2 {
   margin: 0;
@@ -155,7 +134,7 @@ h1 em { color: var(--accent); }
 
 .description {
   margin: var(--space-s) 0 var(--space-m);
-  color: var(--text-dim);
+  color: var(--muted);
 }
 
 .details {
@@ -163,7 +142,7 @@ h1 em { color: var(--accent); }
   flex-wrap: wrap;
   gap: var(--space-s) var(--space-m);
   margin-top: auto;
-  color: var(--text-dim);
+  color: var(--muted);
   font-family: var(--font-mono);
   font-size: 0.78rem;
 }
@@ -176,6 +155,6 @@ h1 em { color: var(--accent); }
 
 .bottom {
   padding-bottom: var(--space-m);
-  color: var(--text-dim);
+  color: var(--muted);
   font-size: 0.9rem;
 }

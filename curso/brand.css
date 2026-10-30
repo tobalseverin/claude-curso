@@ -1,15 +1,13 @@
 /* Curso – Claude brand layer, loaded after the upstream stylesheets.
    Orange replaces the upstream emerald with the same relative luminance:
-   #fd9036 matches #22c55e (decorative, dark text) and #b35406 matches
-   #15803d (text on the Ivory background, 4.8:1, WCAG AA). */
+   --orange matches #22c55e (decorative, dark text) and --orange-deep matches
+   #15803d (text on the Ivory background, 4.8:1, WCAG AA). Colors come from
+   sitio/tokens.css. */
 :root {
-  --curso-orange: #fd9036;
-  --curso-orange-text: #b35406;
-
-  --d-green: var(--curso-orange);
-  --green: var(--curso-orange-text);
-  --green-vivid: var(--curso-orange);
-  --chip-green: var(--curso-orange);
+  --d-green: var(--orange);
+  --green: var(--orange-deep);
+  --green-vivid: var(--orange);
+  --chip-green: var(--orange);
   --green-soft: rgba(253, 144, 54, 0.7);
   --green-line: rgba(253, 144, 54, 0.35);
   --green-glow: rgba(253, 144, 54, 0.22);
@@ -40,12 +38,12 @@
 /* The dark themes re-point --green at --d-green, so only the light text
    colour needs restating for the light defaults above. */
 html.dark {
-  --green: var(--curso-orange);
+  --green: var(--orange);
 }
 
 @media (prefers-color-scheme: dark) {
   html.no-js {
-    --green: var(--curso-orange);
+    --green: var(--orange);
   }
 }
 
@@ -57,11 +55,7 @@ html.dark {
 }
 
 .curso-wordmark .curso-accent {
-  color: var(--curso-orange-text);
-}
-
-html.dark .curso-wordmark .curso-accent {
-  color: var(--curso-orange);
+  color: var(--accent);
 }
 
 .nav-brand .curso-wordmark {
@@ -74,4 +68,171 @@ html.dark .curso-wordmark .curso-accent {
   font-family: var(--font-display);
   font-size: 1.6rem;
   margin-bottom: 0.9rem;
+}
+
+/* ---------- Lesson pages ----------
+   brand.py marks them with .curso-page. The upstream Tailwind classes are
+   remapped to the shared tokens, so light and dark follow the tokens alone.
+   The doubled class outranks Tailwind's dark variants. */
+body.curso-page.curso-page {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+body.curso-page button,
+body.curso-page input {
+  font-family: inherit;
+}
+
+body.curso-page .bg-white,
+body.curso-page .bg-slate-50,
+body.curso-page .dark\:bg-slate-950 {
+  background-color: var(--bg);
+}
+
+body.curso-page .bg-white\/85,
+body.curso-page .dark\:bg-slate-950\/85 {
+  background-color: color-mix(in srgb, var(--bg) 94%, transparent);
+}
+
+body.curso-page .bg-slate-100,
+body.curso-page .dark\:bg-slate-800,
+body.curso-page .hover\:bg-slate-100:hover,
+body.curso-page .dark\:hover\:bg-slate-800:hover,
+body.curso-page .bg-brand-50,
+body.curso-page .dark\:bg-brand-700\/20,
+body.curso-page .hover\:bg-brand-50\/50:hover,
+body.curso-page .dark\:hover\:bg-brand-700\/10:hover {
+  background-color: var(--soft);
+}
+
+body.curso-page .text-slate-900,
+body.curso-page .dark\:text-slate-100,
+body.curso-page .dark\:text-slate-200,
+body.curso-page .hover\:text-slate-900:hover,
+body.curso-page .dark\:hover\:text-white:hover {
+  color: var(--ink);
+}
+
+body.curso-page .text-slate-500,
+body.curso-page .text-slate-600,
+body.curso-page .text-slate-700,
+body.curso-page .dark\:text-slate-300,
+body.curso-page .dark\:text-slate-400 {
+  color: var(--muted);
+}
+
+body.curso-page .text-brand-700,
+body.curso-page .dark\:text-brand-100,
+body.curso-page .hover\:text-brand-700:hover,
+body.curso-page .group:hover .group-hover\:text-brand-700 {
+  color: var(--accent);
+}
+
+body.curso-page .border-slate-200,
+body.curso-page .dark\:border-slate-700,
+body.curso-page .dark\:border-slate-800 {
+  border-color: var(--line);
+}
+
+body.curso-page .hover\:border-brand-500:hover,
+body.curso-page .dark\:hover\:border-brand-500:hover {
+  border-color: var(--accent);
+}
+
+body.curso-page .prose {
+  --tw-prose-body: var(--ink);
+  --tw-prose-headings: var(--ink);
+  --tw-prose-lead: var(--muted);
+  --tw-prose-links: var(--accent);
+  --tw-prose-bold: var(--ink);
+  --tw-prose-counters: var(--muted);
+  --tw-prose-bullets: var(--muted);
+  --tw-prose-hr: var(--line);
+  --tw-prose-quotes: var(--muted);
+  --tw-prose-quote-borders: var(--accent);
+  --tw-prose-captions: var(--muted);
+  --tw-prose-code: var(--ink);
+  --tw-prose-th-borders: var(--line);
+  --tw-prose-td-borders: var(--line);
+}
+
+body.curso-page .prose a {
+  color: var(--accent);
+}
+
+body.curso-page .prose pre {
+  background-color: var(--code);
+}
+
+body.curso-page .prose :not(pre) > code {
+  background-color: var(--soft);
+}
+
+body.curso-page .prose code {
+  font-family: var(--font-mono);
+}
+
+body.curso-page .prose h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 6vw, 3rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+body.curso-page .prose h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+body.curso-page .prose h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+/* Sidebar section labels, as in the static courses. */
+body.curso-page .uppercase {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+}
+
+body.curso-page .curso-wordmark {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+body.curso-page .mermaid {
+  --pele-bg: var(--bg);
+  --pele-fg: var(--ink);
+  --pele-muted: var(--muted);
+  --pele-line: var(--muted);
+  --pele-surface: var(--panel);
+  --pele-surface-alt: var(--soft);
+  --pele-border: var(--muted);
+  --pele-accent: var(--accent);
+}
+
+/* Wide tables and code scroll inside the lesson, not the whole page. */
+body.curso-page main,
+body.curso-page article {
+  min-width: 0;
+}
+
+body.curso-page .prose table {
+  display: block;
+  overflow-x: auto;
+}
+
+body.curso-page .prose pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+body.curso-page .prose {
+  overflow-wrap: break-word;
 }
