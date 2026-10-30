@@ -4,7 +4,7 @@
 # ///
 """Add the English/Spanish switch to every page.
 Usage: uv run curso/lang_switch.py <spanish-site> <english-site>
-Spanish is served at the domain root and English under /en/.
+Spanish is served at /claude/ and English under /claude/en/.
 """
 import sys
 from pathlib import Path
@@ -13,7 +13,7 @@ ES,EN=Path(sys.argv[1]),Path(sys.argv[2])
 # Same look as the neighbouring buttons, using only classes the upstream templates
 # already use so Tailwind compiles them.
 PAGE_CLASSES='inline-flex items-center justify-center rounded-md border border-slate-200 px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800'
-SITES={'es':(ES,'/','/en/','EN','en','Read in English'),'en':(EN,'/en/','/','ES','es','Leer en español')}
+SITES={'es':(ES,'/claude/','/claude/en/','EN','en','Read in English'),'en':(EN,'/claude/en/','/claude/','ES','es','Leer en español')}
 for lang,(root,here,there,label,other,title) in SITES.items():
  for path in root.rglob('*.html'):
   rel=path.relative_to(root).as_posix()
@@ -28,7 +28,7 @@ for lang,(root,here,there,label,other,title) in SITES.items():
    toggle.insert_before(a)
   head=soup.head
   if head and not head.find('link',rel='alternate'):
-   for code,base in (('es','/'),('en','/en/')):
+   for code,base in (('es','/claude/'),('en','/claude/en/')):
     head.append(soup.new_tag('link',rel='alternate',hreflang=code,href=base+rel))
   if rel=='':
    # The landing page lists the languages this edition actually ships.
@@ -41,6 +41,6 @@ for lang,(root,here,there,label,other,title) in SITES.items():
      col=head_p.parent
      for x in col.find_all('a'):x.decompose()
      for code,name in (('es','Español'),('en','English')):
-      link=soup.new_tag('a',href='/' if code=='es' else '/en/',hreflang=code);link.string=name;col.append(link)
+      link=soup.new_tag('a',href='/claude/' if code=='es' else '/claude/en/',hreflang=code);link.string=name;col.append(link)
   path.write_text(str(soup))
 print('Language switch added')

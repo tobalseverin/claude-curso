@@ -22,7 +22,8 @@ def drop_empty(tag):
  # Remove wrappers (picture, a, p) left with nothing visible after the logo goes.
  while tag and tag.name in ('picture','a','p','div') and not tag.get_text(strip=True) and not tag.find(['img','svg','video']):
   parent=tag.parent;tag.decompose();tag=parent
-for root in map(Path,sys.argv[1:]):
+ROOTS=[Path(a) for a in sys.argv[1:]]
+for root in ROOTS:
  shutil.copy(HERE/'brand.css',root/'assets/curso-brand.css')
  shutil.copy(HERE/'favicon.svg',root/'assets/curso-favicon.svg')
  for path in root.rglob('*.html'):
@@ -39,6 +40,17 @@ for root in map(Path,sys.argv[1:]):
    if label:label.clear();label.append(wordmark(soup))
    else:brand.insert(0,wordmark(soup))
    if brand.name=='a':brand['aria-label']=NAME
+  # Way back to the course catalog, in the main nav and in the page header.
+  label='Cursos' if root==ROOTS[0] else 'Courses'
+  if not soup.find(id='catalog-link'):
+   nav=soup.select_one('.nav-links')
+   toggle=soup.find(id='lang-switch')
+   back=soup.new_tag('a',href='/',id='catalog-link');back.string=label
+   if nav:nav.insert(0,back)
+   elif toggle:
+    back['class']=toggle['class']+['hidden','sm:inline-flex']
+    back['class'].remove('inline-flex')
+    toggle.insert_before(back)
   # Remaining logos are the banners at the top of each article.
   for node in soup.find_all(['img','source']):
    src=node.get('src','')+node.get('srcset','')

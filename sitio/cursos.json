@@ -1,0 +1,16 @@
+[
+  {
+    "carpeta": "claude",
+    "titulo": "Claude",
+    "subtitulo": "Dominá Claude Code en un fin de semana",
+    "descripcion": "Del primer comando a coordinar agentes, hooks, skills y servidores MCP, con tutoriales visuales y plantillas listas para usar.",
+    "detalles": ["10 módulos", "60 lecciones", "Español e inglés"]
+  },
+  {
+    "carpeta": "vibecoding",
+    "titulo": "Vibe Coding",
+    "subtitulo": "Desarrollá con IA, con criterio",
+    "descripcion": "De una idea a un producto sostenible: decisiones claras, pruebas y evidencia, con plantillas copiables.",
+    "detalles": ["13 módulos", "23 lecciones", "Guía en PDF y Word"]
+  }
+]

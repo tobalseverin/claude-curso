@@ -1,6 +1,6 @@
 # Claude Code — Curso en español
 
-Bilingual edition (Spanish and English) of [Claude How To](https://github.com/luongnv89/claude-howto) by luongnv89, published at `curso-claude.p113.io`. Spanish adaptation by Cris Severin. MIT license, same as the original.
+Bilingual edition (Spanish and English) of [Claude How To](https://github.com/luongnv89/claude-howto) by luongnv89, published at `curso-claude.p113.io/claude/`. The full site, with the catalog and the other courses, is built from [`sitio/`](../sitio/README.md). Spanish adaptation by Cris Severin. MIT license, same as the original.
 
 This repository is a fork of the original. Everything outside `curso/` is upstream content and is kept identical to it, except that the `ja/`, `uk/`, `vi/` and `zh/` translations are removed.
 
@@ -10,7 +10,7 @@ The original Markdown is the source of truth. The build renders it to English HT
 
 | File | Purpose |
 | --- | --- |
-| `build.sh` | Full build. Output: `build/site/` (Spanish at `/`, English at `/en/`) |
+| `build.sh` | Builds this course into `build/es` and `build/en`. `sitio/build.sh` assembles them into the site |
 | `sync.sh` | Merges the latest upstream, drops other languages, rebuilds |
 | `es.json` | Translation catalog: English string → Spanish |
 | `pending.json` | Generated. Strings with no usable translation yet (shown in English) |
@@ -26,7 +26,7 @@ The original Markdown is the source of truth. The build renders it to English HT
 Requires `uv`, `python3` and `node`.
 
 ```bash
-curso/build.sh
+sitio/build.sh
 ```
 
 ## Update from the original
@@ -35,7 +35,7 @@ curso/build.sh
 curso/sync.sh
 ```
 
-Then translate the strings listed in `curso/pending.json` into a JSON file and run `python3 curso/catalog.py <file>`. A translation that drops or changes a URL is rejected. Run `curso/build.sh` again until `pending.json` is empty.
+Then translate the strings listed in `curso/pending.json` into a JSON file and run `python3 curso/catalog.py <file>`. A translation that drops or changes a URL is rejected. Run `curso/build.sh` again until `pending.json` is empty. Merge the sync PR without squash, so upstream commits stay in the history.
 
 ## Translation quality
 

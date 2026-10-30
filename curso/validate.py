@@ -17,9 +17,10 @@ for p,s in pages.items():
   u=urlsplit(a['href'])
   if u.scheme or u.netloc:continue
   path=unquote(u.path)
-  # Absolute links come from the language switch: / is Spanish, /en/ is English.
-  if path.startswith('/en/'):target=source/path[4:]
-  elif path.startswith('/'):target=dist/path[1:]
+  # Absolute links: /claude/ is Spanish, /claude/en/ is English, / is the catalog built later.
+  if path=='/':continue
+  if path.startswith('/claude/en/'):target=source/path[11:]
+  elif path.startswith('/claude/'):target=dist/path[8:]
   else:target=(p.parent/path).resolve() if path else p
   if target.is_dir():target/='index.html'
   if not target.exists():errors.append(f'{p}: missing {a["href"]}')

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Build the bilingual course: Spanish at the root of build/site, English under build/site/en.
+# Build the Claude Code course: Spanish in build/es, English in build/en.
+# sitio/build.sh assembles them into the full site.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -13,7 +14,3 @@ uv run curso/lang_switch.py build/es build/en
 uv run curso/brand.py build/es build/en
 uv run curso/validate.py build/es build/en
 
-mkdir -p build/site
-cp -R build/es/. build/site/
-cp -R build/en build/site/en
-echo "Site ready in build/site ($(find build/site -name '*.html' | wc -l | tr -d ' ') pages)"

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cursos en español para aprender a construir con IA: Claude Code y Vibe Coding.">
+  <title>Cursos</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="claude/assets/vendor/fonts/fonts.css">
+  <link rel="stylesheet" href="portada.css">
+  <script>
+    // Same preference key as the Claude course, applied before paint.
+    try {
+      var saved = localStorage.getItem('claude-howto-theme');
+      var dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+      if (dark) document.documentElement.classList.add('dark');
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <header class="top">
+    <span class="brand">Cursos</span>
+    <button class="theme" id="theme" type="button" aria-label="Cambiar tema">
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+    </button>
+  </header>
+  <main>
+    <section class="intro">
+      <h1>Aprendé a construir <em>con IA</em></h1>
+      <p>Elegí un curso y empezá. Tu progreso se guarda en este navegador.</p>
+    </section>
+    <ul class="courses">
+      {% for course in courses %}
+      <li class="course">
+        <h2><a href="{{ course.carpeta }}/">Curso – <span>{{ course.titulo }}</span></a></h2>
+        <p class="subtitle">{{ course.subtitulo }}</p>
+        <p class="description">{{ course.descripcion }}</p>
+        <ul class="details">
+          {% for detalle in course.detalles %}<li>{{ detalle }}</li>{% endfor %}
+        </ul>
+        <span class="enter" aria-hidden="true">Entrar al curso →</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </main>
+  <footer class="bottom">Cursos de Cris Severin</footer>
+  <script>
+    document.getElementById('theme').addEventListener('click', function () {
+      var dark = document.documentElement.classList.toggle('dark');
+      try { localStorage.setItem('claude-howto-theme', dark ? 'dark' : 'light'); } catch (e) {}
+    });
+  </script>
+</body>
+</html>
