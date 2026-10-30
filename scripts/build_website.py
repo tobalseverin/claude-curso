@@ -204,12 +204,13 @@ def heading_to_anchor(heading: str) -> str:
         r"\U0000FE00-\U0000FE0F"
         r"\U0000200D"
         r"\U000000A9\U000000AE"
-        r"\U00002000-\U0000206F"
+        r"\U00002000-\U0000200B"
+        r"\U0000200D-\U0000206F"  # keep U+200C zero-width non-joiner
         r"]",
         "",
         heading,
     )
-    anchor = re.sub(r"[^\w\s-]", "", heading.lower(), flags=re.UNICODE)
+    anchor = re.sub(r"[^\w\s\U0000200C-]", "", heading.lower(), flags=re.UNICODE)
     anchor = anchor.replace(" ", "-")
     return anchor.rstrip("-")
 

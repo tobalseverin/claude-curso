@@ -37,13 +37,16 @@ def heading_to_anchor(heading: str) -> str:
         r"\U0000FE00-\U0000FE0F"  # Variation selectors
         r"\U0000200D"  # Zero-width joiner
         r"\U000000A9\U000000AE"  # (C) (R)
-        r"\U00002000-\U0000206F"  # General punctuation (some emoji-adjacent)
+        r"\U00002000-\U0000200B"  # General punctuation (some emoji-adjacent),
+        r"\U0000200D-\U0000206F"  # minus U+200C zero-width non-joiner (see below)
         r"]",
         "",
         heading,
     )
-    # 2. Remove punctuation but keep Unicode word chars, spaces, and hyphens
-    anchor = re.sub(r"[^\w\s-]", "", heading.lower(), flags=re.UNICODE)
+    # 2. Remove punctuation but keep Unicode word chars, spaces, hyphens, and
+    #    U+200C zero-width non-joiner: Persian uses it inside words and GitHub
+    #    keeps it in heading ids.
+    anchor = re.sub(r"[^\w\s\U0000200C-]", "", heading.lower(), flags=re.UNICODE)
     # 3. Replace spaces with hyphens
     anchor = anchor.replace(" ", "-")
     # 4. Strip trailing hyphens (keep leading hyphens for emoji-prefixed headings)
