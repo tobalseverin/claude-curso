@@ -37,5 +37,5 @@ git diff --cached --quiet || git commit -m "chore: drop upstream languages other
 echo "Upstream changes since last sync:"
 git diff --stat "$before" HEAD -- '*.md' ':!curso' | tail -20
 
-curso/build.sh
+sitio/build.sh
 echo "Pending strings: $(python3 -c "import json;print(len(json.load(open('curso/pending.json'))))")"
